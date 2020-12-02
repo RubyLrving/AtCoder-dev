@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Main",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++14",
+                "-g",
+                "${relativeFile}",
+                "-o",
+                "a.out"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
