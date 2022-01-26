@@ -2,11 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Main",
+            "name": "C++: Current File",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
-            "args": ["<input.txt"],
+            "program": "${fileDirname}/a.out",
+            "args": [
+                "<input.txt"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -20,6 +22,16 @@
                 }
             ],
             "preLaunchTask": "Build Main"
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "<input.txt"
+            ],
         }
     ]
 }

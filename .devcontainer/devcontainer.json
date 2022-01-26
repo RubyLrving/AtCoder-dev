@@ -25,9 +25,8 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "gcc -v",
-	"postCreateCommand": "pip3 install -r requirements.txt",
+	//"postCreateCommand": "pip3 install -r requirements.txt",
 
 	// Comment out this line to run as root instead.
 	"remoteUser": "vscode"
-
 }

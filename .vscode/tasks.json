@@ -6,11 +6,11 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-std=c++14",
+                "-std=c++17",
                 "-g",
                 "${relativeFile}",
                 "-o",
-                "a.out"
+                "${fileDirname}/a.out"
             ],
             "group": {
                 "kind": "build",
