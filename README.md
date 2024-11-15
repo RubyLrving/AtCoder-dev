@@ -25,7 +25,7 @@ acc new abc378 --template cpp
 指定の問題のディレクトリを開いてコマンドを実行。
 
 ```
-oj t -c -d ./tests/
+g++ -std=c++17 main.cpp && oj t -d ./tests/
 ```
 
 - 実行>デバッグ実行を行う
@@ -73,9 +73,14 @@ oj t -c "pypy3 ./main.py" -d ./tests/
 3. vscodeのインストール。
 4. vscodeの拡張機能で、「Remote Development」をインストール。
 5. githubのSSHからこのプロジェクトのcloneを用意します。
+
+```
+git clone git@github.com:RubyLrving/AtCoder-dev.git
+```
+
 6. vscodeでこのプロジェクトを開きます。
 7. 表示>コマンドパレットから「Open folder in container」を選択します。
-8. temolateの設定のため、隠しフォルダのConfigフォルダへ移動。
+8. templateの設定のため、隠しフォルダのConfigフォルダへ移動。
 
 ```
 cd `acc config-dir`
