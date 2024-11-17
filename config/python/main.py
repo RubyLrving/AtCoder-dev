@@ -1,5 +1,6 @@
 '''
 oj t -c "python3 ./main.py" -d ./tests/
+oj t -c "pypy3 ./main.py" -d ./tests/
 N = int(input())
 A = list(map(int, input().split()))
 B = [] * N

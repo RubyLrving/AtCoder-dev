@@ -5,8 +5,11 @@ FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 必要なパッケージのインストール
-RUN apt-get update && apt-get -y install --no-install-recommends git \
-    python3-pip pypy3 nodejs npm build-essential gdb && \
+RUN apt-get update && \
+    apt-get -y install --no-install-recommends \
+    git gdb \
+    # python pypy3
+    python3-pip pypy3 nodejs npm build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 # Pipのアップグレード

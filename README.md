@@ -5,132 +5,76 @@ C++, python3, pypy
 ## 環境
 docker, vscode, ac-library, online-judge-tools, git
 
-# プロジェクトをremote Developmentで実行
+## プロジェクトをremote Developmentで実行
 
 ※下記に記載されている「設定方法」を全て実行してください
 
 1. vscodeでこのプロジェクトを開きます。
 2. 表示>コマンドパレットから「Open folder in container」を選択します。
 
-## cppの使用方法
+## コンテスト参加時
 
-- cppの新規のプロジェクトの作成
+1. カレントディレクトリ移動  
+  `$ cd contest`
+  - ディレクトリは /workspaces/atcoder_cpp/contest となる想定
+1. 問題の取得
+  `$ acc new コンテストID`
+  - 例: `$ acc new abc123`
+  - 例: `acc new abc378 --template cpp`
+  - 例: `acc new abc378 --template py`
+1. フォルダ移動  
+  `$ cd コンテストID`
+  - 例: `$ cd abc123`
+1. main.cppを開いてコーディング
+1. コンパイルし、a.outを生成する
+1. テスト  
+  `oj t -d ./tests/`
+  - cppの場合は、`g++ -std=c++20 main.cpp`にて、a.outファイルをビルド後に`oj t -c -d ./tests/`
+  - スクリプト言語の場合は `oj t -c "pypy3 main.py" -d ./tests/` のようになる
+  - 例: `g++ -std=c++20 main.cpp && oj t -c -d ./tests/`
+  - 例: `oj t -c "python3 ./main.py" -d ./tests/`
+  - 例: `oj t -c "pypy3 ./main.py" -d ./tests/`
+1. 提出
+  `acc s main.cpp`
 
-```
-acc new abc378 --template cpp
-```
+- 手動手順
+  1. 以下のコマンドを実行し、AtCoderログイン設定  
+    `$ acc login`
+  1. 以下のコマンド実行し、再びAtCoderアカウント入力  
+    `$ oj login https://beta.atcoder.jp/`
+  1. 全問インストールする設定にする  
+    `$ acc config default-task-choice all`
+  1. テンプレート設定用フォルダ確認  
+    ``$ ls -l `acc config-dir` ``
+  1. テンプレート設定のコピー  
+    ``$ cp -r ./config/. `acc config-dir` `` 
+  1. テンプレート設定用フォルダ配下にコピーされていること確認  
+    ``$ ls -l `acc config-dir` ``
+  1. デフォルトテンプレートの設定  
+    `$ acc config default-template cpp`
+  1. c++20の設定の為、「表示」>「コマンドパレット」から、「C++」を検索
+  1. 「c/c++ edit configurations」を選択
+  1. 「c++ 標準」の項目にて、「c++20」を選択
 
-- サンプル入力でテストを行う
+- 自動化手順
+  1. 事前にルートのディレクトリに .env ファイルを作成し以下内容を記述(右辺は適宜変更のこと)  
+    ```
+    ATCODER_USERNAME=your username
+    ATCODER_PASSWORD=your password
+    ```
+  1. VSCodeでコンテナ環境にリモート接続後、以下のコマンドを実行しスクリプトに実行権限付与  
+    `$ chmod +x ./init/*.sh`
+  1. 以下実行  
+    `./init/startup.sh`
 
-指定の問題のディレクトリを開いてコマンドを実行。
+  1. コンテナを終了したい時、左下の「><」をクリックし、「リモート接続の終了」を選択してvscodeを閉じます。
 
-```
-g++ -std=c++17 main.cpp && oj t -d ./tests/
-```
-
-- 実行>デバッグ実行を行う
+## 実行>デバッグ実行を行う
 
 このプロジェクトでは実行>デバッグ実行の入力を、「./atcoder-dev/input.txt」のテキストを読み込むようにしています。
 
 入力データを毎回手動で入力しなくてもいいようにしています。
 
-- ライブラリ
+## ライブラリ
 
 atcoder libraryに加えて自作のライブラリも「./atcoder-dev/lib」フォルダに保存してあります。
-
-データ構造やアルゴリズムは、その場で実装できるレベルに理解しておくのが基本です。
-
-データ構造やアルゴリズムにその場で変更を加えないとACできない問題があるからです。
-
-中身を修正できる自作のライブラリは貴重です。
-
-## pyの使用方法
-
-- pyの新規のプロジェクトの作成
-
-```
-acc new abc378 --template py
-```
-
-- サンプル入力でテストを行う
-
-指定の問題のディレクトリを開いてコマンドを実行。
-
-1. python3
-```
-oj t -c "python3 ./main.py" -d ./tests/
-```
-
-2. pypy
-
-```
-oj t -c "pypy3 ./main.py" -d ./tests/
-```
-
-# 設定方法
-1. docker desktopのインストール。
-2. gitのインストール。
-3. vscodeのインストール。
-4. vscodeの拡張機能で、「Remote Development」をインストール。
-5. githubのSSHからこのプロジェクトのcloneを用意します。
-
-```
-git clone git@github.com:RubyLrving/AtCoder-dev.git
-```
-
-6. vscodeでこのプロジェクトを開きます。
-7. 表示>コマンドパレットから「Open folder in container」を選択します。
-8. templateの設定のため、隠しフォルダのConfigフォルダへ移動。
-
-```
-cd `acc config-dir`
-```
-
-9. vscodeで隠しフォルダを開きます。
-
-```
-code .
-```
-
-10. cpp, pyフォルダを作成します。
-
-```
-mkdir cpp
-mkdir py
-```
-
-11. cppへAtCoder-dev/configのmain.cppとtemplate.jsonをコピーします。
-12. pyへAtCoder-dev/configのmain.pyとtemplate.jsonをコピーします。
-13. pyフォルダのtemplate.jsonを編集します。
-
-template.jsonにて、main.cppの拡張子をpyに変更します。
-
-```
-{
-  "task":{
-    "program": ["main.py"],
-    "submit": "main.py"
-  }
-}
-```
-
-14. 「code .」で開いたvscodeを閉じます。
-15. templateを確認します。
-
-```
-acc templates
-```
-
-16. aclでatcoderへログイン
-
-```
-acc login
-```
-
-17. ojでatcoderへログイン
-
-```
-oj login https://beta.atcoder.jp/
-```
-
-18. 手順の終了、vscodeを閉じます。
