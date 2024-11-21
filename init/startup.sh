@@ -2,6 +2,8 @@
 
 cd /workspaces/atcoder_cpp
 
+export $(grep -v '^#' .env | xargs)
+
 ./init/login.sh
 
 acc config default-task-choice all

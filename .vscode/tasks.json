@@ -21,7 +21,7 @@
         {
             "label": "CheckTestCase",
             "type": "shell",
-            "command": "cd ${fileDirname} && rm -f ${fileDirname}/${fileBasenameNoExtension} && g++ -std=gnu++17 ${fileBasename} -o a.out && oj test -c \"${fileDirname}/a.out\" -d ${fileDirname}/tests/",
+            "command": "cd ${fileDirname} && rm -f ${fileDirname}/${fileBasenameNoExtension} && g++ -std=gnu++20 ${fileBasename} -o a.out && oj test -c \"${fileDirname}/a.out\" -d ${fileDirname}/tests/",
             "presentation": {
                 "reveal": "always",
                 "focus": true,

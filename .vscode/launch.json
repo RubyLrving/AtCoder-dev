@@ -22,17 +22,6 @@
                 }
             ],
             "preLaunchTask": "Build Main"
-        },
-        {
-            "name": "Python: Current File",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "< input.txt",
-            ],
         }
     ]
 }
